@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuesioner Rencana Reuni</title>
+    <style>
+        :root {
+            --primary-color: #2F75B5;
+            --secondary-color: #D9E1F2;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-style: italic;
+        }
+        .section-title {
+            background-color: var(--secondary-color);
+            color: #2c3e50;
+            padding: 10px 15px;
+            border-left: 5px solid var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 0 4px 4px 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        input[type="text"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(47, 117, 181, 0.3);
+        }
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin: 40px auto 20px auto;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #1e5282;
+        }
+        
+        /* Styles for the "Already Filled" Section */
+        .filled-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #ccc;
+        }
+        .filled-section h3 {
+            color: var(--primary-color);
+            text-align: center;
+        }
+        .badge {
+            background-color: #e8f4f8;
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .participant-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+        }
+        .participant-item {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .participant-name {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .participant-time {
+            display: block;
+            font-size: 0.75em;
+            color: #888;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Kuesioner Rencana Reuni Kampus</h1>
+        <p>Silakan isi data di bawah ini. Jawabanmu sangat berarti untuk perencanaan acara reuni kita!</p>
+    </div>
+
+    <form action="#" method="POST">
+        <!-- BAGIAN 1 -->
+        <div class="section-title">Bagian 1: Data Diri & Pembaruan Kontak</div>
+        
+        <div class="form-group">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkapmu..." required>
+        </div>
+        
+        <div class="form-group">
+            <label for="whatsapp">Nomor WhatsApp (Aktif)</label>
+            <input type="text" id="whatsapp" name="whatsapp" placeholder="Contoh: 081234567890" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="domisili">Domisili Kota Saat Ini</label>
+            <input type="text" id="domisili" name="domisili" placeholder="Contoh: Depok, Jakarta, dll." required>
+        </div>
+
+        <!-- BAGIAN 2 -->
+        <div class="section-title">Bagian 2: Kehadiran & Waktu Pelaksanaan</div>
+        
+        <div class="form-group">
+            <label for="kehadiran">Seberapa besar kemungkinan kamu hadir di acara reuni nanti?</label>
+            <select id="kehadiran" name="kehadiran">
+                <option value="" disabled selected>-- Pilih salah satu --</option>
+                <option value="pasti">Pasti hadir</option>
+                <option value="insyaallah">InsyaAllah hadir</option>
+                <option value="ragu">Masih ragu-ragu</option>
+                <option value="belum_bisa">Belum bisa</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="bulan">Bulan/Periode pelaksanaan yang paling pas?</label>
+            <select id="bulan" name="bulan">
+                <option value="" disabled selected>-- Pilih Bulan --</option>
+                <option value="desember">Desember</option>
+                <option value="januari">Januari</option>
+                <option value="maret">Maret</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="waktu">Preferensi waktu acara:</label>
+            <select id="waktu" name="waktu">
+                <option value="" disabled selected>-- Pilih Waktu --</option>
+                <option value="pagi_siang">Pagi - Siang</option>
+                <option value="sore_malam">Sore - Malam</option>
+                <option value="seharian">Seharian / Menginap (Staycation)</option>
+            </select>
+        </div>
+
+        <!-- BAGIAN 3 -->
+        <div class="section-title">Bagian 3: Konsep & Tempat Acara</div>
+        
+        <div class="form-group">
+            <label for="tempat">Kamu lebih suka reuni yang diadakan di mana?</label>
+            <select id="tempat" name="tempat">
+                <option value="" disabled selected>-- Pilih Lokasi --</option>
+                <option value="kampus">Kembali ke Kampus</option>
+                <option value="cafe_hotel">Cafe / Restoran / Hotel</option>
+                <option value="villa">Villa / Resort</option>
+                <option value="taman">Taman / Outdoor</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="konsep">Konsep kegiatan yang paling diharapkan?</label>
+            <select id="konsep" name="konsep">
+                <option value="" disabled selected>-- Pilih Konsep --</option>
+                <option value="santai">Ramah tamah santai</option>
+                <option value="games">Games & Doorprize</option>
+                <option value="hiburan">Hiburan / Live music</option>
+                <option value="sharing">Sharing session</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="pendamping">Berencana membawa pendamping/keluarga?</label>
+            <select id="pendamping" name="pendamping">
+                <option value="" disabled selected>-- Pilih Status --</option>
+                <option value="sendiri">Sendiri saja</option>
+                <option value="pasangan">Bawa pasangan</option>
+                <option value="keluarga">Bawa pasangan dan anak</option>
+            </select>
+        </div>
+
+        <!-- BAGIAN 4 -->
+        <div class="section-title">Bagian 4: Pendanaan & Konsumsi</div>
+        
+        <div class="form-group">
+            <label for="iuran">Kisaran iuran (HTM) yang ideal per orang?</label>
+            <select id="iuran" name="iuran">
+                <option value="" disabled selected>-- Pilih Nominal --</option>
+                <option value="under_150">< Rp 150.000</option>
+                <option value="150_300">Rp 150.000 - Rp 300.000</option>
+                <option value="300_500">Rp 300.000 - Rp 500.000</option>
+                <option value="above_500">> Rp 500.000</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="alergi">Pantangan makanan / alergi tertentu</label>
+            <input type="text" id="alergi" name="alergi" placeholder="Kosongkan jika tidak ada">
+        </div>
+
+        <div class="form-group">
+            <label for="donatur">Bersedia menjadi donatur/sponsor tambahan?</label>
+            <select id="donatur" name="donatur">
+                <option value="" disabled selected>-- Pilih Opsi --</option>
+                <option value="ya">Ya (boleh dihubungi)</option>
+                <option value="tidak">Belum dulu</option>
+                <option value="lainnya">Bantu dalam bentuk lain</option>
+            </select>
+        </div>
+
+        <!-- BAGIAN 5 -->
+        <div class="section-title">Bagian 5: Kenangan & Pesan</div>
+        
+        <div class="form-group">
+            <label for="dosen">Siapa dosen atau mata kuliah yang paling tak terlupakan? Kenapa?</label>
+            <textarea id="dosen" name="dosen" placeholder="Ceritakan singkat di sini..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="kata">Satu kata/kalimat untuk masa kuliahmu!</label>
+            <input type="text" id="kata" name="kata" placeholder="Seru! / Kurang tidur! / dll.">
+        </div>
+
+        <div class="form-group">
+            <label for="saran">Saran/harapan untuk panitia reuni agar acara sukses</label>
+            <textarea id="saran" name="saran" placeholder="Tulis masukanmu di sini..."></textarea>
+        </div>
+
+        <button type="submit">Kirim Kuesioner</button>
+    </form>
+
+    <!-- SECTION DAFTAR ORANG YANG SUDAH MENGISI -->
+    <div class="filled-section">
+        <h3>Teman-teman yang Sudah Mengisi Form</h3>
+        <p style="text-align: center; color: #666; margin-bottom: 25px;">
+            Sudah ada <span class="badge">6 Orang</span> yang berpartisipasi. Yuk susul mereka!
+        </p>
+        
+        <ul class="participant-list">
+            <li class="participant-item">
+                <div class="avatar">PF</div>
+                <div>
+                    <span class="participant-name">Pristian Firzatama</span>
+                    <span class="participant-time">Hari ini, 10:15 WIB</span>
+                </div>
+            </li>
+            <li class="participant-item">
+                <div class="avatar">BK</div>
+                <div>
+                    <span class="participant-name">Bali Kancana Intan</span>
+                    <span class="participant-time">Hari ini, 11:30 WIB</span>
+                </div>
+            </li>
+            <li class="participant-item">
+                <div class="avatar">DA</div>
+                <div>
+                    <span class="participant-name">Dimas Aditya</span>
+                    <span class="participant-time">Kemarin, 19:45 WIB</span>
+                </div>
+            </li>
+            <li class="participant-item">
+                <div class="avatar">SA</div>
+                <div>
+                    <span class="participant-name">Siti Aisyah</span>
+                    <span class="participant-time">Kemarin, 15:20 WIB</span>
+                </div>
+            </li>
+            <li class="participant-item">
+                <div class="avatar">RF</div>
+                <div>
+                    <span class="participant-name">Reza Fahlevi</span>
+                    <span class="participant-time">2 Hari lalu</span>
+                </div>
+            </li>
+            <li class="participant-item">
+                <div class="avatar">NP</div>
+                <div>
+                    <span class="participant-name">Nadia Putri</span>
+                    <span class="participant-time">2 Hari lalu</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
